@@ -1,0 +1,95 @@
+.view-canvas {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffffab;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 5px #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 5px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 5px;
+}
+
+.file-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 80px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.file-container p {
+    /* adjust the text so that it doesn't decrease the icon size */
+    font-size: 0.8rem;
+    text-align: center;
+    margin: 0px 2px 3px;
+    padding: 5px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+.file-container:hover {
+    transform: scale(1.1);
+}
+
+.file-icon.file {
+    background-image: url(../../../icons/file.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 100px;
+    height: 100px;
+}
+
+.file-icon.code-file {
+    background-image: url(../../../icons/code-file.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 100px;
+    height: 100px;
+}
+
+.folder-icon.folder {
+    background-image: url(../../../icons/folder.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 100px;
+    height: 100px;
+}
+
+.folder-icon.zip {
+    background-image: url(../../../icons/zip-folder.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 100px;
+    height: 100px;
+}
