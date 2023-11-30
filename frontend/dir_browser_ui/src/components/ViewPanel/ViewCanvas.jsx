@@ -1,62 +1,74 @@
 // component to create a canvas to display grid and cells
 // This component will be center aligned to the page.
 
-import React from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import './styles/canvas-styles.css';
 import { File } from './File';
 import { Folder } from './Folder';
+import useDirNavigator from '../../hooks/useDirNavigator';
+import { formatDirListResponse } from '../../utils/dataFormatter';
 
 export const ViewCanvas = (props) => {
-    // add 3 files in the view panel
-    const NFiles = 100;
-    const files = Array.from(Array(NFiles).keys()).map((i) => {
-        const randomChoice = Math.floor(Math.random() * 100);
-        if (randomChoice % 11 === 0) {
-            return {
-                id: i,
-                name: 'file' + i,
-                icon: 'folder',
-                type: 'folder',
-            };
-        } else if (randomChoice % 19 === 0) {
-            return {
-                id: i,
-                name: 'zip-file' + i + '.zip',
-                icon: 'zip',
-                type: 'zip-folder',
-            };
-        } else if (randomChoice % 13 === 0) {
-            return {
-                id: i,
-                name: 'file' + i,
-                icon: 'code-file',
-                type: 'file',
-            };
-        } else {
-            return {
-                id: i,
-                name: 'file' + i + '.py',
-                icon: 'file',
-                type: 'file',
-            };
-        }
-    });
+    const { currentDir, setCurrentDir, getDirList, navigateToDir, dirList } =
+        useDirNavigator();
+
+    const [selectedDir, setSelectedDir] = React.useState(null);
+
+    useEffect(() => {
+        console.log('currentDir changed to: ', currentDir);
+        navigateToDir(selectedDir);
+    }, [selectedDir]);
+
+    useLayoutEffect(() => {
+        console.log('[useLayoutEffect] currentDir changed to: ', currentDir);
+        getDirList(currentDir);
+    }, []);
 
     return (
         <div className='view-canvas'>
+            <div className='navigation-controls'>
+                <div className='buttons-container'>
+                    <button
+                        className='navigation-button'
+                        onClick={() => {
+                            console.log('clicked on back button');
+                            // navigateToDir('..');
+                        }}
+                    >
+                        <div className='back-button-icon'></div>
+                    </button>
+                    <button
+                        className='navigation-button'
+                        onClick={() => {
+                            console.log('clicked on refresh button');
+                            // getDirList(currentDir);
+                        }}
+                    >
+                        <div className='refresh-button-icon'></div>
+                    </button>
+                </div>
+                <div className='view-canvas-header'>
+                    <h5>{`/${currentDir}` || '/'}</h5>
+                </div>
+                <div className='space-filler'></div>
+            </div>
             <div
                 id='view-canvas'
                 className='grid-container'
                 width='500'
                 height='500'
             >
-                {files.map((dirItem) => {
+                {formatDirListResponse(dirList).map((dirItem) => {
                     if (dirItem.type === 'folder') {
                         return (
                             <Folder
                                 key={dirItem.id}
                                 name={dirItem.name}
                                 icon={dirItem.icon}
+                                onClick={() => {
+                                    console.log('clicked on folder');
+                                    setSelectedDir(dirItem.name);
+                                }}
                             />
                         );
                     } else if (dirItem.type === 'zip-folder') {
