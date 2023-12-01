@@ -1,32 +1,39 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
+const { getHomePath } = require("../../utils/pathHelper");
 
-const DEFAULT_START_DIR = '/storage/';
+const DEFAULT_START_DIR = getHomePath();
 
 const getRelPath = (startDir, currentDir) => {
     if (currentDir === startDir) {
-        return '';
+        return "";
     }
     return path.relative(startDir, currentDir);
 };
 
+const getDirectoryStats = (dirPath) => {
+    try {
+        return true, fs.statSync(dirPath).isDirectory();
+    } catch (err) {
+        if (err.code === "ENOENT") {
+            return false, "Inaccessible directory";
+        } else if (err.code === "EPERM") {
+            return false, "Permission denied";
+        } else {
+            return false, "Unknown error";
+        }
+    }
+};
+
 const dir_list_get = (req, res) => {
-    const relDirPath = req.params[0] || '';
+    const relDirPath = req.params[0] || "";
 
     const absDirPath = path.join(DEFAULT_START_DIR, relDirPath);
 
-    // check if the path exists and is a directory
-    if (!fs.existsSync(absDirPath)) {
-        res.status(404).json({
-            message: `The path ${relDirPath} does not exist.`,
-        });
-        return;
-    }
-    if (!fs.statSync(absDirPath).isDirectory()) {
-        res.status(400).json({
-            message: `The path ${relDirPath} is not a directory.`,
-        });
-        return;
+    // do trial and error to check if directory is accessible and exists
+    const [isDir, error] = getDirectoryStats(absDirPath);
+    if (!isDir) {
+        return res.status(400).json({ message: error });
     }
 
     const dir = fs.readdirSync(absDirPath);
