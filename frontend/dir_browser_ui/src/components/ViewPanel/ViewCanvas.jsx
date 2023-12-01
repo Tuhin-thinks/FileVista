@@ -1,22 +1,23 @@
 // component to create a canvas to display grid and cells
 // This component will be center aligned to the page.
 
-import React, { useEffect, useLayoutEffect } from 'react';
-import './styles/canvas-styles.css';
-import { File } from './File';
-import { Folder } from './Folder';
-import useDirNavigator from '../../hooks/useDirNavigator';
-import { formatDirListResponse } from '../../utils/dataFormatter';
-import { ArrowLeftCircle, RefreshCcw } from 'react-feather';
+import React, { useEffect, useLayoutEffect } from "react";
+import "./styles/canvas-styles.css";
+import { File } from "./File";
+import { Folder } from "./Folder";
+import useDirNavigator from "../../hooks/useDirNavigator";
+import { formatDirListResponse } from "../../utils/dataFormatter";
+import { ArrowLeftCircle, RefreshCcw } from "react-feather";
 
 export const ViewCanvas = ({ setUpdateTime }) => {
     const {
         currentDir,
+        pathSeparator,
+        lastUpdateTime,
         getDirList,
         navigateToDir,
         dirList,
         navigateToParentDir,
-        getAdditionalProperties,
     } = useDirNavigator();
 
     const [selectedDir, setSelectedDir] = React.useState(null);
@@ -24,50 +25,50 @@ export const ViewCanvas = ({ setUpdateTime }) => {
     useEffect(() => {
         if (!selectedDir) return;
         navigateToDir(selectedDir);
+        setUpdateTime(lastUpdateTime);
     }, [selectedDir]);
 
     useLayoutEffect(() => {
         getDirList(currentDir);
-        const extraProps = getAdditionalProperties();
-        console.log(extraProps);
-        setUpdateTime(extraProps.lastUpdateTime);
+        setUpdateTime(lastUpdateTime);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
-        <div className='view-canvas'>
-            <div className='navigation-controls'>
-                <div className='buttons-container'>
+        <div className="view-canvas">
+            <div className="navigation-controls">
+                <div className="buttons-container">
                     <button
-                        className='navigation-button'
+                        className="navigation-button"
                         onClick={async () => {
                             await navigateToParentDir();
                             setSelectedDir(null);
                         }}
                     >
-                        <ArrowLeftCircle color='#39b1d6' />
+                        <ArrowLeftCircle color="#39b1d6" />
                     </button>
                     <button
-                        className='navigation-button'
+                        className="navigation-button"
                         onClick={() => {
                             getDirList(currentDir);
                         }}
                     >
-                        <RefreshCcw color='#39b1d6' />
+                        <RefreshCcw color="#39b1d6" />
                     </button>
                 </div>
-                <div className='view-canvas-header'>
-                    <h5>{`/${currentDir}` || '/'}</h5>
+                <div className="view-canvas-header">
+                    <h5>{`${currentDir}` || pathSeparator}</h5>
                 </div>
-                <div className='space-filler'></div>
+                <div className="space-filler"></div>
             </div>
             <div
-                id='view-canvas'
-                className='grid-container'
-                width='500'
-                height='500'
+                id="view-canvas"
+                className="grid-container"
+                width="500"
+                height="500"
             >
                 {formatDirListResponse(dirList).map((dirItem) => {
-                    if (dirItem.type === 'folder') {
+                    if (dirItem.type === "folder") {
                         return (
                             <Folder
                                 key={dirItem.id}
@@ -78,7 +79,7 @@ export const ViewCanvas = ({ setUpdateTime }) => {
                                 }}
                             />
                         );
-                    } else if (dirItem.type === 'zip-folder') {
+                    } else if (dirItem.type === "zip-folder") {
                         return (
                             <Folder
                                 key={dirItem.id}
@@ -86,7 +87,7 @@ export const ViewCanvas = ({ setUpdateTime }) => {
                                 icon={dirItem.icon}
                             />
                         );
-                    } else if (dirItem.type === 'file') {
+                    } else if (dirItem.type === "file") {
                         return (
                             <File
                                 key={dirItem.id}
