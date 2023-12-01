@@ -13,14 +13,14 @@ const getRelPath = (startDir, currentDir) => {
 
 const getDirectoryStats = (dirPath) => {
     try {
-        return true, fs.statSync(dirPath).isDirectory();
+        return [true, fs.statSync(dirPath).isDirectory()];
     } catch (err) {
         if (err.code === "ENOENT") {
-            return false, "Inaccessible directory";
+            return [false, "Inaccessible directory"];
         } else if (err.code === "EPERM") {
-            return false, "Permission denied";
+            return [false, "Permission denied"];
         } else {
-            return false, "Unknown error";
+            return [false, "Unknown error"];
         }
     }
 };
