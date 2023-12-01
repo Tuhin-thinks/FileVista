@@ -3,18 +3,18 @@ const generateId = () => {
 };
 
 const getFileIcon = (fileName) => {
-    const fileExtension = fileName.split('.').pop();
+    const fileExtension = fileName.split(".").pop();
     const knownFileTypes = {
-        py: 'code-file',
-        js: 'code-file',
-        jsx: 'code-file',
-        html: 'code-file',
-        css: 'code-file',
-        txt: 'text-file',
-        mst: 'text-file',
-        md: 'text-file',
+        py: "code-file",
+        js: "code-file",
+        jsx: "code-file",
+        html: "code-file",
+        css: "code-file",
+        txt: "text-file",
+        mst: "text-file",
+        md: "text-file",
     };
-    return knownFileTypes[fileExtension] || 'file';
+    return knownFileTypes[fileExtension] || "file";
 };
 
 const formatDirListResponse = (dirList) => {
@@ -23,8 +23,8 @@ const formatDirListResponse = (dirList) => {
             id: generateId(),
             name: item.name,
             path: item.path,
-            icon: item.isDirectory ? 'folder' : getFileIcon(item.name),
-            type: item.isDirectory ? 'folder' : 'file',
+            icon: item.isDirectory ? "folder" : getFileIcon(item.name),
+            type: item.isDirectory ? "folder" : "file",
         };
     });
     return formattedDirList;

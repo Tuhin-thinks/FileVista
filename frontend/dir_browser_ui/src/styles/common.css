@@ -15,7 +15,6 @@
     transition: all 0.3s ease-in-out;
 }
 
-
 .path-container {
     display: flex;
     flex-direction: row;
@@ -35,7 +34,6 @@
     font-weight: bold;
     color: #333333f1;
 }
-
 
 .text-small {
     font-size: 0.6rem;
