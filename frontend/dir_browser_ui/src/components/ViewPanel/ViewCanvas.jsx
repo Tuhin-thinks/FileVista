@@ -7,20 +7,25 @@ import { File } from './File';
 import { Folder } from './Folder';
 import useDirNavigator from '../../hooks/useDirNavigator';
 import { formatDirListResponse } from '../../utils/dataFormatter';
+import { ArrowLeftCircle, RefreshCcw } from 'react-feather';
 
 export const ViewCanvas = (props) => {
-    const { currentDir, setCurrentDir, getDirList, navigateToDir, dirList } =
-        useDirNavigator();
+    const {
+        currentDir,
+        getDirList,
+        navigateToDir,
+        dirList,
+        navigateToParentDir,
+    } = useDirNavigator();
 
     const [selectedDir, setSelectedDir] = React.useState(null);
 
     useEffect(() => {
-        console.log('currentDir changed to: ', currentDir);
+        if (!selectedDir) return;
         navigateToDir(selectedDir);
     }, [selectedDir]);
 
     useLayoutEffect(() => {
-        console.log('[useLayoutEffect] currentDir changed to: ', currentDir);
         getDirList(currentDir);
     }, []);
 
@@ -30,21 +35,20 @@ export const ViewCanvas = (props) => {
                 <div className='buttons-container'>
                     <button
                         className='navigation-button'
-                        onClick={() => {
-                            console.log('clicked on back button');
-                            // navigateToDir('..');
+                        onClick={async () => {
+                            await navigateToParentDir();
+                            setSelectedDir(null);
                         }}
                     >
-                        <div className='back-button-icon'></div>
+                        <ArrowLeftCircle color='#39b1d6' />
                     </button>
                     <button
                         className='navigation-button'
                         onClick={() => {
-                            console.log('clicked on refresh button');
-                            // getDirList(currentDir);
+                            getDirList(currentDir);
                         }}
                     >
-                        <div className='refresh-button-icon'></div>
+                        <RefreshCcw color='#39b1d6' />
                     </button>
                 </div>
                 <div className='view-canvas-header'>
@@ -66,7 +70,6 @@ export const ViewCanvas = (props) => {
                                 name={dirItem.name}
                                 icon={dirItem.icon}
                                 onClick={() => {
-                                    console.log('clicked on folder');
                                     setSelectedDir(dirItem.name);
                                 }}
                             />

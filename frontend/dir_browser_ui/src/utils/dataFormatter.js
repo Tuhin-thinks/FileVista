@@ -18,7 +18,6 @@ const getFileIcon = (fileName) => {
 };
 
 const formatDirListResponse = (dirList) => {
-    console.log('formatDirListResponse', dirList);
     const formattedDirList = dirList.map((item) => {
         return {
             id: generateId(),
