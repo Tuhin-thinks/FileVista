@@ -17,4 +17,4 @@
 
 ## Screenshots
 
-![Screenshot 1](.images\dir_browser_ui.png)
+![Screenshot 1](.images/dir_browser_ui.png)
