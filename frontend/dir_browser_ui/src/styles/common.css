@@ -25,13 +25,20 @@
     box-sizing: border-box;
     padding: 5px;
     margin-bottom: 5px;
-    background-color: ;
+    background-color: #fff;
 }
 
 .path-container p {
     margin: 0px;
     padding: 0px;
     font-size: 0.8rem;
+    font-weight: bold;
+    color: #333333f1;
+}
+
+
+.text-small {
+    font-size: 0.6rem;
     font-weight: bold;
     color: #333333f1;
 }

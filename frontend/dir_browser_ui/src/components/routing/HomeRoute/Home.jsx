@@ -1,15 +1,16 @@
 import { ViewCanvas } from '../../ViewPanel/ViewCanvas';
 import '../../../styles/common.css';
+import { useState } from 'react';
 
 export const Home = () => {
+    const [updateTime, setUpdateTime] = useState(null);
+
     return (
         <div className='view-panel-container'>
             <div className='path-container'>
-                <p className='path'>
-                    /storage/backup/.temp/654b36e1416cad156cfdef8d/R_C_P/
-                </p>
+                <span className='text-small'>Last updated: {updateTime}</span>
             </div>
-            <ViewCanvas />
+            <ViewCanvas setUpdateTime={setUpdateTime} />
         </div>
     );
 };

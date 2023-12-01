@@ -44,6 +44,7 @@ const dir_list_get = (req, res) => {
     const response = {
         dirList,
         currentDir: getRelPath(DEFAULT_START_DIR, absDirPath),
+        pathSeparator: path.sep,
     };
     return res.json(response);
 };

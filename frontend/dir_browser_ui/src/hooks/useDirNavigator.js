@@ -7,6 +7,8 @@ const useDirNavigator = () => {
     const [dirList, setDirList] = useState([]);
     const [currentDir, setCurrentDir] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    let separator = '/'; // default set for linux based environments
+    let lastUpdateTime = '';
 
     const getDirList = async (path) => {
         try {
@@ -18,6 +20,8 @@ const useDirNavigator = () => {
             setDirList(responseBody.dirList);
             setCurrentDir(responseBody.currentDir);
             setErrorMessage('');
+            separator = responseBody.pathSeparator;
+            lastUpdateTime = new Date().toISOString();
         } catch (error) {
             console.error(
                 `Error while fetching directory items [${path}]:`,
@@ -31,13 +35,23 @@ const useDirNavigator = () => {
         if (!dirName) {
             return;
         }
-        const newPath = currentDir + '/' + dirName;
+        const newPath = currentDir + separator + dirName;
         await getDirList(newPath);
     };
 
     const navigateToParentDir = async () => {
-        const newPath = currentDir.split('/').slice(0, -1).join('/');
+        const newPath = currentDir
+            .split(separator)
+            .slice(0, -1)
+            .join(separator);
         await getDirList(newPath);
+    };
+
+    const getAdditionalProperties = () => {
+        return {
+            separator,
+            lastUpdateTime,
+        };
     };
 
     // return the directory list, current directory path, error message and the getDirList function
@@ -48,6 +62,8 @@ const useDirNavigator = () => {
         getDirList,
         navigateToDir,
         navigateToParentDir,
+        separator,
+        getAdditionalProperties,
     };
 };
 

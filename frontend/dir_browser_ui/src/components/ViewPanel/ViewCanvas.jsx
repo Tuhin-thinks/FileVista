@@ -9,13 +9,14 @@ import useDirNavigator from '../../hooks/useDirNavigator';
 import { formatDirListResponse } from '../../utils/dataFormatter';
 import { ArrowLeftCircle, RefreshCcw } from 'react-feather';
 
-export const ViewCanvas = (props) => {
+export const ViewCanvas = ({ setUpdateTime }) => {
     const {
         currentDir,
         getDirList,
         navigateToDir,
         dirList,
         navigateToParentDir,
+        getAdditionalProperties,
     } = useDirNavigator();
 
     const [selectedDir, setSelectedDir] = React.useState(null);
@@ -27,6 +28,9 @@ export const ViewCanvas = (props) => {
 
     useLayoutEffect(() => {
         getDirList(currentDir);
+        const extraProps = getAdditionalProperties();
+        console.log(extraProps);
+        setUpdateTime(extraProps.lastUpdateTime);
     }, []);
 
     return (
