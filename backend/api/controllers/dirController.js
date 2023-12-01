@@ -13,6 +13,8 @@ const getRelPath = (startDir, currentDir) => {
 
 const getDirectoryStats = (dirPath) => {
     try {
+        // check if directory has read access
+        fs.accessSync(dirPath, fs.constants.R_OK);
         return [true, fs.statSync(dirPath).isDirectory()];
     } catch (err) {
         if (err.code === "ENOENT") {
@@ -20,7 +22,7 @@ const getDirectoryStats = (dirPath) => {
         } else if (err.code === "EPERM") {
             return [false, "Permission denied"];
         } else {
-            return [false, "Unknown error"];
+            return [false, "Unknown error: " + err.code + " " + err.message];
         }
     }
 };
