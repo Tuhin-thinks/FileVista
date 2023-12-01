@@ -16,4 +16,6 @@ defaultRouter.get('/', (req, res) => {
 });
 app.use('/', defaultRouter);
 
-app.listen(5000, () => console.log('Server ready'));
+app.listen(5000, () =>
+    console.log('Server listening on address: http://localhost:5000/')
+);
