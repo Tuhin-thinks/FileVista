@@ -1,13 +1,15 @@
 // component to create a canvas to display grid and cells
 // This component will be center aligned to the page.
 
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import "./styles/canvas-styles.css";
+import "../../styles/list-view.css";
+import "../../styles/grid-view.css";
 import { File } from "./File";
 import { Folder } from "./Folder";
 import useDirNavigator from "../../hooks/useDirNavigator";
 import { formatDirListResponse } from "../../utils/dataFormatter";
-import { ArrowLeftCircle, RefreshCcw } from "react-feather";
+import { ArrowLeftCircle, List, RefreshCcw } from "react-feather";
 
 export const ViewCanvas = ({ setUpdateTime }) => {
     const {
@@ -20,7 +22,8 @@ export const ViewCanvas = ({ setUpdateTime }) => {
         navigateToParentDir,
     } = useDirNavigator();
 
-    const [selectedDir, setSelectedDir] = React.useState(null);
+    const [selectedDir, setSelectedDir] = useState(null);
+    const [viewStyle, setViewStyle] = useState("grid");
 
     useEffect(() => {
         if (!selectedDir) return;
@@ -55,6 +58,16 @@ export const ViewCanvas = ({ setUpdateTime }) => {
                     >
                         <RefreshCcw color="#39b1d6" />
                     </button>
+                    <button
+                        className="navigation-button"
+                        onClick={() => {
+                            setViewStyle(
+                                viewStyle === "grid" ? "list" : "grid"
+                            );
+                        }}
+                    >
+                        <List color="#39b1d6" />
+                    </button>
                 </div>
                 <div className="view-canvas-header">
                     <h5>{`${currentDir}` || pathSeparator}</h5>
@@ -63,7 +76,9 @@ export const ViewCanvas = ({ setUpdateTime }) => {
             </div>
             <div
                 id="view-canvas"
-                className="grid-container"
+                className={
+                    viewStyle === "grid" ? "grid-container" : "list-container"
+                }
                 width="500"
                 height="500"
             >
@@ -77,6 +92,8 @@ export const ViewCanvas = ({ setUpdateTime }) => {
                                 onClick={() => {
                                     setSelectedDir(dirItem.name);
                                 }}
+                                type={dirItem.type}
+                                viewStyle={viewStyle}
                             />
                         );
                     } else if (dirItem.type === "zip-folder") {
@@ -85,6 +102,8 @@ export const ViewCanvas = ({ setUpdateTime }) => {
                                 key={dirItem.id}
                                 name={dirItem.name}
                                 icon={dirItem.icon}
+                                type={dirItem.type}
+                                viewStyle={viewStyle}
                             />
                         );
                     } else if (dirItem.type === "file") {
@@ -93,6 +112,8 @@ export const ViewCanvas = ({ setUpdateTime }) => {
                                 key={dirItem.id}
                                 name={dirItem.name}
                                 icon={dirItem.icon}
+                                type={dirItem.type}
+                                viewStyle={viewStyle}
                             />
                         );
                     } else {
@@ -101,6 +122,8 @@ export const ViewCanvas = ({ setUpdateTime }) => {
                                 key={dirItem.id}
                                 name={dirItem.name}
                                 icon={dirItem.icon}
+                                type={dirItem.type}
+                                viewStyle={viewStyle}
                             />
                         );
                     }
@@ -109,3 +132,4 @@ export const ViewCanvas = ({ setUpdateTime }) => {
         </div>
     );
 };
+

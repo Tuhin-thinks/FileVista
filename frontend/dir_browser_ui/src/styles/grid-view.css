@@ -1,0 +1,54 @@
+.grid-container {
+    top: 15px;
+    bottom: 15px;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 5px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 2px;
+    margin: 15px 0px 30px;
+}
+
+.grid {
+    width: 120px;
+    height: 100px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid:hover {
+    scale: 1.1;
+}
+
+.grid .p-text {
+    /* adjust the text so that it doesn't decrease the icon size */
+    font-size: 0.8rem;
+    margin: 0px 2px 3px;
+    padding: 5px;
+    width: 100px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file-container.grid:hover .p-text {
+    overflow: visible;
+    white-space: normal;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 0 5px #ccc;
+    z-index: 1;
+
+    /* adjust the text so that it doesn't decrease the icon size */
+    font-size: 0.8rem;
+    text-align: center;
+    margin: 0px 2px 3px;
+    width: 100px;
+    word-break: break-all;
+}
