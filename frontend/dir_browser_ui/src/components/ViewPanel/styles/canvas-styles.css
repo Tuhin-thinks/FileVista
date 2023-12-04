@@ -1,16 +1,19 @@
 .view-canvas {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+
     width: 100%;
-    height: 100%;
+    height: 90vh;
+    overflow: auto;
+
     background-color: #ffffffab;
     border: 1px solid #ccc;
     border-radius: 5px;
-    overflow: hidden;
     position: relative;
     box-shadow: 0 0 5px #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+
     padding: 10px;
     box-sizing: border-box;
     cursor: pointer;
@@ -51,27 +54,8 @@
     margin: 2px 5px;
 }
 
-.grid-container {
-    top: 15px;
-    bottom: 15px;
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 5px;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    padding: 5px;
-    margin: 15px 0px;
-}
-
 .file-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 120px;
-    height: 100px;
     border: 1px solid transparent;
     border-radius: 5px;
     box-sizing: border-box;
@@ -79,87 +63,33 @@
     transition: all 0.3s ease-in-out;
 }
 
-.file-container p {
-    /* adjust the text so that it doesn't decrease the icon size */
-    font-size: 0.8rem;
-    text-align: center;
-    margin: 0px 2px 3px;
-    padding: 5px;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
 /* display the overflow text in a overlay */
-.file-container:hover p {
-    overflow: visible;
-    white-space: normal;
-    background-color: #e2e2e2b4;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #ccc;
-    padding: 5px;
-    z-index: 1;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    font-size: 0.8rem;
-    transition: all 0.3s ease-in-out;
+
+.file-icon,
+.folder-icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 60px;
+    height: 60px;
 }
 
-.file-container:hover {
-    transform: scale(1.1);
-}
-
-.file-icon.file {
+.file {
     background-image: url(../../../icons/file.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    width: 100px;
-    height: 100px;
 }
 
-.file-icon.code-file {
+.code-file {
     background-image: url(../../../icons/code-file.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    width: 100px;
-    height: 100px;
 }
 
-.file-icon.text-file {
+.text-file {
     background-image: url(../../../icons/text-file.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    width: 100px;
-    height: 100px;
 }
 
-.folder-icon.folder {
+.folder {
     background-image: url(../../../icons/folder.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    width: 100px;
-    height: 100px;
 }
 
-.folder-icon.zip {
+.zip {
     background-image: url(../../../icons/zip-folder.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    width: 100px;
-    height: 100px;
 }

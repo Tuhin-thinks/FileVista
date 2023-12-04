@@ -19,6 +19,7 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
+        "start-linux": "export BROWSER=none && react-scripts start",
         "start": "set BROWSER=none && react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
