@@ -75,59 +75,58 @@ export const ViewCanvas = ({ setUpdateTime }) => {
                 <div className="space-filler"></div>
             </div>
             <div
-                id="view-canvas"
                 className={
                     viewStyle === "grid" ? "grid-container" : "list-container"
                 }
-                width="500"
-                height="500"
             >
-                {formatDirListResponse(dirList).map((dirItem) => {
-                    if (dirItem.type === "folder") {
-                        return (
-                            <Folder
-                                key={dirItem.id}
-                                name={dirItem.name}
-                                icon={dirItem.icon}
-                                onClick={() => {
-                                    setSelectedDir(dirItem.name);
-                                }}
-                                type={dirItem.type}
-                                viewStyle={viewStyle}
-                            />
-                        );
-                    } else if (dirItem.type === "zip-folder") {
-                        return (
-                            <Folder
-                                key={dirItem.id}
-                                name={dirItem.name}
-                                icon={dirItem.icon}
-                                type={dirItem.type}
-                                viewStyle={viewStyle}
-                            />
-                        );
-                    } else if (dirItem.type === "file") {
-                        return (
-                            <File
-                                key={dirItem.id}
-                                name={dirItem.name}
-                                icon={dirItem.icon}
-                                type={dirItem.type}
-                                viewStyle={viewStyle}
-                            />
-                        );
-                    } else {
-                        return (
-                            <File
-                                key={dirItem.id}
-                                name={dirItem.name}
-                                icon={dirItem.icon}
-                                type={dirItem.type}
-                                viewStyle={viewStyle}
-                            />
-                        );
-                    }
-                })}
+                <div className={`items-container ${viewStyle}`}>
+                    {formatDirListResponse(dirList).map((dirItem) => {
+                        if (dirItem.type === "folder") {
+                            return (
+                                <Folder
+                                    key={dirItem.id}
+                                    name={dirItem.name}
+                                    icon={dirItem.icon}
+                                    onClick={() => {
+                                        setSelectedDir(dirItem.name);
+                                    }}
+                                    type={dirItem.type}
+                                    viewStyle={viewStyle}
+                                />
+                            );
+                        } else if (dirItem.type === "zip-folder") {
+                            return (
+                                <Folder
+                                    key={dirItem.id}
+                                    name={dirItem.name}
+                                    icon={dirItem.icon}
+                                    type={dirItem.type}
+                                    viewStyle={viewStyle}
+                                />
+                            );
+                        } else if (dirItem.type === "file") {
+                            return (
+                                <File
+                                    key={dirItem.id}
+                                    name={dirItem.name}
+                                    icon={dirItem.icon}
+                                    type={dirItem.type}
+                                    viewStyle={viewStyle}
+                                />
+                            );
+                        } else {
+                            return (
+                                <File
+                                    key={dirItem.id}
+                                    name={dirItem.name}
+                                    icon={dirItem.icon}
+                                    type={dirItem.type}
+                                    viewStyle={viewStyle}
+                                />
+                            );
+                        }
+                    })}
+                </div>
             </div>
         </div>
     );

@@ -4,7 +4,7 @@
     align-items: flex-start;
     flex-direction: column;
 
-    width: 100%;
+    width: -webkit-fill-available;
     height: 90vh;
     overflow: auto;
 
