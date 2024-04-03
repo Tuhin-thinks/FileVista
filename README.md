@@ -1,4 +1,4 @@
-## React Dir Browser
+## FileVista
 
 **Description:** A simple directory browser built with React. Allows you to browse through a directory structure and view files. Back-end is built with Node.js and Express.
 
