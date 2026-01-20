@@ -5,10 +5,10 @@
 ## Installation
 
 1. Clone the repository
-2. Navigate to the backend directory and run `npm install`
-3. Navigate to the frontend directory and run `npm install` (make sure to navigate inside `dir_browser_ui` directory)
-4. Run `npm start` in the backend directory
-5. Run `npm start` in the frontend directory
+2. Navigate to the backend directory and run `yarn install`
+3. Navigate to the frontend directory and run `yarn install` (make sure to navigate inside `dir_browser_ui` directory)
+4. Run `yarn start` in the backend directory
+5. Run `yarn start` in the frontend directory
 
 ## Usage
 
@@ -17,4 +17,9 @@
 
 ## Screenshots
 
-![Screenshot 1](.images/dir_browser_ui.png)
+<!-- there are 4 files arrange them in 2x2 grid -->
+| | |
+|---|---|
+| ![Screenshot 1](screenshots/screenshot1.png) | ![Screenshot 2](screenshots/screenshot2.png) |
+| ![Screenshot 3](screenshots/screenshot3.png) | ![Screenshot 4](screenshots/screenshot4.png) |
+
