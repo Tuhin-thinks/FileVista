@@ -1,5 +1,6 @@
 // component to render a file icon and text label
 import "./styles/canvas-styles.css";
+import { FileIconRenderer } from "../Common/DisplayItems";
 
 export const Folder = ({
     name,
@@ -24,7 +25,10 @@ export const Folder = ({
         >
             <div className="item icon-cell">
                 {onToggleSelect ? (
-                    <label className="selection-checkbox" aria-label={`Select ${name}`}>
+                    <label
+                        className="selection-checkbox"
+                        aria-label={`Select ${name}`}
+                    >
                         <input
                             type="checkbox"
                             checked={!!isSelected}
@@ -34,7 +38,11 @@ export const Folder = ({
                         <span className="selection-indicator"></span>
                     </label>
                 ) : null}
-                <div className={"folder-icon " + icon}></div>
+                <FileIconRenderer
+                    iconType={icon.props.extension || "default"}
+                    isDirectory={type === "folder"}
+                    size={viewStyle === "grid" ? 60 : 40}
+                />
             </div>
             <div className="item name-cell">
                 <p className="file-name p-text">{name}</p>
