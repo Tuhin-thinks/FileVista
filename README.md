@@ -1,3 +1,8 @@
+| | |
+|---|---|
+| ![Screenshot 1](screenshots/screenshot1.png) | ![Screenshot 2](screenshots/screenshot2.png) |
+| ![Screenshot 3](screenshots/screenshot3.png) | ![Screenshot 4](screenshots/screenshot4.png) |
+
 ## FileVista
 
 **Description:** A simple directory browser built with React. Allows you to browse through a directory structure and view files. Back-end is built with Node.js and Express.
@@ -14,12 +19,3 @@
 
 1. Navigate to `localhost:3000` in your browser
 2. Click on a directory to view its contents
-
-## Screenshots
-
-<!-- there are 4 files arrange them in 2x2 grid -->
-| | |
-|---|---|
-| ![Screenshot 1](screenshots/screenshot1.png) | ![Screenshot 2](screenshots/screenshot2.png) |
-| ![Screenshot 3](screenshots/screenshot3.png) | ![Screenshot 4](screenshots/screenshot4.png) |
-
