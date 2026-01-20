@@ -10,7 +10,7 @@
 
 1. Clone the repository
 2. Navigate to the backend directory and run `yarn install`
-3. Navigate to the frontend directory and run `yarn install` (make sure to navigate inside `dir_browser_ui` directory)
+3. Navigate to the frontend directory and run `yarn install` (make sure to navigate inside `frontend` directory)
 4. Run `yarn start` in the backend directory
 5. Run `yarn start` in the frontend directory
 
