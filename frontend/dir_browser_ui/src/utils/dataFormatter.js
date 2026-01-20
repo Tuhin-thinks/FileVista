@@ -23,6 +23,7 @@ const formatDirListResponse = (dirList) => {
             id: generateId(),
             name: item.name,
             path: item.path,
+            isDirectory: item.isDirectory,
             icon: item.isDirectory ? "folder" : getFileIcon(item.name),
             type: item.isDirectory ? "folder" : "file",
         };

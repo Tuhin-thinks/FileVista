@@ -6,70 +6,63 @@
 }
 
 .items-container.list {
-
     display: flex;
-    justify-content: flex-start;
     flex-direction: column;
-
     width: 100%;
     height: 100%;
     overflow: auto;
-
-    text-align: center;
-    font-size: 0.8rem;
+    text-align: left;
+    font-size: 0.9rem;
     transition: all 0.3s ease-in-out;
     padding: 5px;
-
-    align-items: flex-start;
+    gap: 6px;
 }
 
-.list {
+.file-container.list {
     width: 100%;
-    height: 45px;
-}
-
-/* style sheet for each item in a list */
-.list div.item {
-    height: 45px;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    margin: 15px 5px 0px;
-    padding: 5px;
+    min-height: 60px;
+    padding: 8px 10px;
+    margin: 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-}
-
-.list div.item:nth-child(1) {
-    flex: 0 0 auto;
-    width: 45px;
-    height: 45px;
-    margin: 15px 5px 0px;
-}
-
-.list div.item:nth-child(2) {
-    height: 45px;
+    gap: 8px;
+    border-radius: 10px;
     border: 1px solid transparent;
-    border-radius: 5px;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    margin: 15px 5px 0px;
-    padding: 5px;
+}
+
+.file-container.list:hover {
+    background-color: #f5fbff;
+    border-color: #d5eaf4;
+}
+
+.list .icon-cell {
+    flex: 0 0 70px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 8px;
+}
+
+.list .name-cell {
     flex: 1 1 auto;
-    margin-right: 5px;
-    margin-bottom: 0px;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+}
+
+.list .name-cell .file-name {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list .type-cell {
+    flex: 0 0 140px;
+    text-align: right;
+    color: #475569;
+    text-transform: capitalize;
 }
 
 .list .p-text {
-    /* adjust the text so that it doesn't decrease the icon size */
-    font-size: 0.8rem;
-    text-align: left;
-    white-space: nowrap;
+    font-size: 0.85rem;
 }
