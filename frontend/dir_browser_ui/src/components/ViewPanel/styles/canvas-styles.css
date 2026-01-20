@@ -333,3 +333,31 @@
 .zip {
     background-image: url(../../../icons/zip-folder.svg);
 }
+
+.items-container {
+    position: relative;
+}
+
+.items-container:empty {
+    min-height: 260px;
+}
+
+.items-container:empty::after {
+    content: "No files or folders to display.";
+    white-space: pre-line;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 18px;
+    color: #0f3b4c;
+    background: linear-gradient(135deg, #f5fbff 0%, #f0f7fb 100%);
+    border: 1px dashed #c8e6f1;
+    border-radius: 12px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+    pointer-events: none;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
