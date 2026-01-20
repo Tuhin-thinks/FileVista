@@ -1,4 +1,4 @@
-import { FileIcon, defaultStyles } from "react-file-icon";
+import { FileIcon } from "react-file-icon";
 import { CiFolderOn } from "react-icons/ci";
 import { getFileTypeStyle } from "./fileTypeColors.ts";
 
