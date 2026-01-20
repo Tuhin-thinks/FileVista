@@ -2,7 +2,7 @@
 |---|---|
 | ![Screenshot 3](screenshots/screenshot3.png) | ![Screenshot 4](screenshots/screenshot4.png) |
 
-## FileVista
+## HomeHub
 
 **Description:** A simple directory browser built with React. Allows you to browse through a directory structure and view files. Back-end is built with Node.js and Express.
 
